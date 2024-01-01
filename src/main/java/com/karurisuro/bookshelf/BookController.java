@@ -22,7 +22,7 @@ public class BookController {
     return bookService.findAllBooks();
   }
 
-  @GetMapping("/{:d}")
+  @GetMapping("/{id}")
   public ResponseEntity<Book> findBookById(@PathVariable(value = "id") Long id) throws NotFoundException {
     return ResponseEntity.of(bookService.findById(id));
   }

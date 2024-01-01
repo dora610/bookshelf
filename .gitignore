@@ -35,5 +35,6 @@ build/
 
 ### Log files ###
 *.log
+applog.log
 
 .DS_Store
