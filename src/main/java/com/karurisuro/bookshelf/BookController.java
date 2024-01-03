@@ -1,7 +1,7 @@
 package com.karurisuro.bookshelf;
 
+import com.karurisuro.bookshelf.exception.ContentNotFoundException;
 import com.karurisuro.bookshelf.exception.InvalidUserInputException;
-import com.karurisuro.bookshelf.exception.NotFoundException;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,13 +23,13 @@ public class BookController {
   }
 
   @GetMapping("/{id}")
-  public ResponseEntity<Book> findBookById(@PathVariable(value = "id") Long id) throws NotFoundException {
-    return ResponseEntity.of(bookService.findById(id));
+  public ResponseEntity<Book> findBookById(@PathVariable(value = "id") Long id) throws ContentNotFoundException {
+    return ResponseEntity.ok(bookService.findById(id));
   }
 
   @GetMapping("/find")
   public List<Book> findBooks(@RequestParam(value = "title", required = false, defaultValue = "")String title,
-                              @RequestParam(value = "author", required = false, defaultValue = "")String author) throws InvalidUserInputException, NotFoundException {
+                              @RequestParam(value = "author", required = false, defaultValue = "")String author) throws InvalidUserInputException, ContentNotFoundException {
     return bookService.findBooks(title, author);
   }
 
@@ -40,7 +40,7 @@ public class BookController {
   }
 
   @PutMapping("/{id}")
-  public Book updateBook(@PathVariable(value = "id")Long id, @RequestBody @Valid Book book) throws NotFoundException {
+  public Book updateBook(@PathVariable(value = "id")Long id, @RequestBody @Valid Book book) throws ContentNotFoundException {
     return bookService.updateBook(id, book);
   }
 
