@@ -34,5 +34,5 @@ build/
 
 ### Lof files ###
 *.log
-
+applog.*
 .DS_Store
